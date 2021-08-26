@@ -36,11 +36,5 @@
 
 
 
-(define (modal-response verb person)
-  ;random gen either 1 or 2
-  (define num (random 2))
-  (if (= 1 num)
-      (list 'Yes 'I verb person)
-      ;; example: (map string->symbol '("would"))
-      (list 'No 'I verb 'not person)))
+
 
