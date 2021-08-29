@@ -2,6 +2,7 @@
 
 (provide (all-defined-out))
 
+(define nil '())
 
 ;; used for both clint and user
 (define greeting
@@ -26,3 +27,10 @@
 ;; user specific (question!?!?)
 (define question
   '("who" "what" "when" "where" "how" "why" "?"))
+
+
+(define modal-verbs
+  '("can" "could" "must" "should" "will" "would" "may" "ought"))
+
+(define (modal mode)
+  

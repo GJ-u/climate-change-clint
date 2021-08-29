@@ -17,22 +17,27 @@
     name))
 
 ; main-loop: 
-(define (main-loop name)
+(define (main-loop)
   (let ((input(prompt)))  
     (if (string-contains input "bye")
         (begin
           (display "Clint: goodbye?"))
         (begin
-          (respond input name)
-          (main-loop name)))))
+          (respond input )
+          (main-loop)))))
 
 ; respond: 
-(define (respond input name)
+(define (respond input)
   (cond
     [(string-contains-or input greeting) (printf "Clint: ~a" (choose greeting))]
     [(string-contains-or input questions) (printf "Clint: ~a" (choose questions))]
-     [(string-contains-or input '("do" "can" "could" "must" "should" "will" "would")) (printf "~a" (modal-response (string-contains-or input '("do" "can" "could" "must" "should" "will" "would")) "name"))]   
+     [(string-contains-or input '("do" "can" "could" "must" "should" "will" "would"))
+      (mode (string-contains-or input
+                             '("do" "can" "could" "must" "should" "will" "would")))]
     ))
+
+
+
 
 
 
