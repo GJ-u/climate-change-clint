@@ -1,12 +1,14 @@
 #lang racket
 
+(require "string-contains-multi.rkt")
 (provide (all-defined-out))
+#| CHAT VARIABLE DEFINITIONS |#
 
 (define nil '())
 
 ;; used for both clint and user
 (define greeting
-  '("hello" "hi" "howdy" "hewwo there" "greetings traveller" "what's up dog" "yo"))
+  '("hello" "hi " " hi " "howdy" "hewwo there" "greetings traveller" "what's up dog?"))
 
 ;; clint specific 
 (define questions
@@ -28,9 +30,28 @@
 (define question
   '("who" "what" "when" "where" "how" "why" "?"))
 
-
+;; used for both clint and user
 (define modal-verbs
   '("can" "could" "must" "should" "will" "would" "may" "ought"))
 
-(define (modal mode)
+(define modal-verbs-i
+  '("need" "think" "want" "have"))
+
+;; clint specific
+(define affirmative-after-modal
+  '("Yes I" "Indeed I" "I sure" "I"))
+
+(define negative-after-modal
+  '("No I" "Sadly I" "Sorry I"))
+
+(define modal-i-response
+  '("Since when did you" "Why do you"))
+
+#| CHAT FUNCTION DEFINITIONS |#
+
+(define (modal-affirmative [mode (choose modal-verbs)])
+  (printf "Clint: ~a ~a!" (choose affirmative-after-modal) mode))
+
+(define (modal-i [mode (choose modal-verbs-i)])
+  (printf "Clint: ~a ~a that?" (choose modal-i-response) mode))
   

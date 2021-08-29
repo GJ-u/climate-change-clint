@@ -17,6 +17,7 @@
     [(and (string-contains str str-must)(string-contains-or str lst)) #t]
     [else #f]))
 
+;; choose : lst -> int
 (define (choose lst)
   (list-ref lst (random (length lst))))
  
