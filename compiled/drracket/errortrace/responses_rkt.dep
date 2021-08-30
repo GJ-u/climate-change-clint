@@ -1,0 +1,1 @@
+("7.2" racket ("473ad4563c8b8ec9e6db053671710fd4c549ec36" . "4795f9d8e5ca98fac79ee3b3cd53d66cdd7b591b") #"/home/vic/climate-change-clint/string-contains-multi.rkt" (collects #"errortrace" #"errortrace-key.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))
