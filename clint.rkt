@@ -29,12 +29,12 @@
 (define (respond input)
   (cond
     [(string-contains-or input greeting) (greeting-response)]
-    [(string-contains-or input question) (printf "Clint: ~a" (choose question))] ; placeholder
+    [(string-contains-or input question) (p (choose question))] ; placeholder
     ;; Dealing with modal verbs
     [(string-contains-or input modal-verbs)(modal-affirmative (string-contains-or input modal-verbs))]
     [(and (string-contains input "i")(string-contains-or input modal-verbs-i))
      (modal-i (string-contains-or input modal-verbs-i))]
-    [(string-contains-or input because-words) (printf "Clint: ~a" (choose because-responses))]
+    [(string-contains-or input because-words) (p (choose because-responses))]
     ))
 
 (main-loop)

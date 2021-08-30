@@ -70,4 +70,6 @@
 (define (modal-i [mode (choose modal-verbs-i)])
   (printf "Clint: ~a ~a that?" (choose modal-i-response) mode))
 
+(define (p str)
+  (printf "Clint: ~a" str))
 
