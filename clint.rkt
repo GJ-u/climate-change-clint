@@ -10,7 +10,7 @@
   (display "\n>> ")
   (read-line))
 
-;; name: nil -> symbol
+;; name: placeholder!!
 (define (name)
   (display "What is your name? ")
   (let ((name (read-line)))
@@ -19,8 +19,8 @@
 ; main-loop: 
 (define (main-loop)
   (let ((input(string-downcase (prompt))))  
-    (if (string-contains input "bye") ; placeholder
-          (display "Clint: goodbye?") ; placeholder
+    (if (string-contains-or input farewell)
+        (printf "Clint: ~a!" (choose farewell))
         (begin
           (respond input )
           (main-loop)))))
@@ -28,14 +28,13 @@
 ; respond: 
 (define (respond input)
   (cond
-    [(string-contains-or input greeting) (printf "Clint: ~a" (string-titlecase (choose greeting)))]
+    [(string-contains-or input greeting) (greeting-response)]
     [(string-contains-or input question) (printf "Clint: ~a" (choose question))] ; placeholder
-
     ;; Dealing with modal verbs
     [(string-contains-or input modal-verbs)(modal-affirmative (string-contains-or input modal-verbs))]
-    [(and (string-contains input "i")
-          (string-contains-or input modal-verbs-i))
-    (modal-i (string-contains-or input modal-verbs-i))]
+    [(and (string-contains input "i")(string-contains-or input modal-verbs-i))
+     (modal-i (string-contains-or input modal-verbs-i))]
+    [(string-contains-or input because-words) (printf "Clint: ~a" (choose because-responses))]
     ))
 
 (main-loop)

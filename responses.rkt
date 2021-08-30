@@ -10,6 +10,9 @@
 (define greeting
   '("hello" "hi " " hi " "howdy" "hewwo there" "greetings traveller" "what's up dog?"))
 
+(define farewell
+  '("Farewell" "Bye" "Goodbye" "See you" "See you later" "Ciao"))
+
 ;; clint specific 
 (define questions
   '("How is the weather today?"
@@ -24,7 +27,7 @@
    "Remember to choose local and organic food."
    "Do you use a compost bin? Remember to compost."
    "Drive efficiently today: fast acceleration, high speeds and abrupt stops waste energy."
-   "Always opt for LED light bulbs"))
+   "Remember to always opt for LED light bulbs."))
   
 ;; user specific (question!?!?)
 (define question
@@ -47,11 +50,24 @@
 (define modal-i-response
   '("Since when did you" "Why do you"))
 
+(define because-words
+  '("so " "so that" "because" " so " "since"))
+
+(define because-responses
+  '("Is that really so?" "That is so cool!" "Huh, interesting." "Woah, cool." "Oh really?" "That's strange."))
+
 #| CHAT FUNCTION DEFINITIONS |#
+
+(define (greeting-response)
+  (printf "Clint: ~a, ~a" (string-titlecase (choose greeting))
+          (string-downcase (choose (if (= (random 2) 0)
+              tips
+              questions)))))
 
 (define (modal-affirmative [mode (choose modal-verbs)])
   (printf "Clint: ~a ~a!" (choose affirmative-after-modal) mode))
 
 (define (modal-i [mode (choose modal-verbs-i)])
   (printf "Clint: ~a ~a that?" (choose modal-i-response) mode))
-  
+
+
