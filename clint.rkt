@@ -3,7 +3,7 @@
 #lang racket
 (require srfi/13)
 (require "responses.rkt")
-(require "string-contains-multi.rkt")
+(require "functions.rkt")
 
 ;; prompt: nil -> nil
 (define (prompt)
@@ -16,7 +16,7 @@
   (let ((name (read-line)))
     name))
 
-; main-loop: 
+; main-loop:
 (define (main-loop)
   (let ((input(string-downcase (prompt))))  
     (if (string-contains-or input farewell)

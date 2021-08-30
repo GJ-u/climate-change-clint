@@ -1,6 +1,6 @@
 #lang racket
 
-(require "string-contains-multi.rkt")
+(require "functions.rkt")
 (provide (all-defined-out))
 #| CHAT VARIABLE DEFINITIONS |#
 
