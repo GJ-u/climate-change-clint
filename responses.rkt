@@ -1,6 +1,7 @@
 #lang racket
 
 (require "functions.rkt")
+
 (provide (all-defined-out))
 #| CHAT VARIABLE DEFINITIONS |#
 
@@ -8,15 +9,14 @@
 
 ;; used for both clint and user
 (define greeting
-  '("hello" "hi " " hi " "howdy" "hewwo there" "greetings traveller" "what's up dog?"))
+  '("hello" "hi " " hi " "howdy" "hewwo there" "greetings traveller" "greetings" "what's up dog?"))
 
 (define farewell
   '("Farewell" "Bye" "Goodbye" "See you" "See you later" "Ciao"))
 
 ;; clint specific 
 (define questions
-  '("How is the weather today?"
-    "How are you feeling about the climate today?"))
+  "How is the weather today?")
 
 ;; clint specific
 (define tips
@@ -60,9 +60,11 @@
 
 (define (greeting-response)
   (printf "Clint: ~a, ~a" (string-titlecase (choose greeting))
-          (string-downcase (choose (if (= (random 2) 0)
-              tips
-              questions)))))
+          (string-downcase (choose tips))))
+
+(define (greeting-and-question)
+  (printf "Clint: ~a, ~a" (string-titlecase (choose greeting))
+          (string-downcase questions)))
 
 (define (modal-affirmative [mode (choose modal-verbs)])
   (printf "Clint: ~a ~a!" (choose affirmative-after-modal) mode))

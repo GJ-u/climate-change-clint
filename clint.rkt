@@ -20,7 +20,7 @@
 (define (main-loop)
   (let ((input(string-downcase (prompt))))  
     (if (string-contains-or input farewell)
-        (printf "Clint: ~a!" (choose farewell))
+        (p (choose farewell))
         (begin
           (respond input )
           (main-loop)))))
@@ -28,7 +28,11 @@
 ; respond: 
 (define (respond input)
   (cond
-    [(string-contains-or input greeting) (greeting-response)]
+    [(string-contains-or input greeting)
+     (begin
+       (if (= (random 2) 0)
+           (greeting-response)
+           (ask-question)))]
     [(string-contains-or input question) (p (choose question))] ; placeholder
     ;; Dealing with modal verbs
     [(string-contains-or input modal-verbs)(modal-affirmative (string-contains-or input modal-verbs))]
@@ -36,5 +40,12 @@
      (modal-i (string-contains-or input modal-verbs-i))]
     [(string-contains-or input because-words) (p (choose because-responses))]
     ))
+
+(define (ask-question)
+  (greeting-and-question)
+  (let ((answer (prompt)))
+    (begin (with-output-to-file "user.txt" #:exists 'replace
+  (lambda () (printf "~a" answer)))
+           (printf "Clint: I see. ~a" (string-downcase (choose tips))))))
 
 (main-loop)
