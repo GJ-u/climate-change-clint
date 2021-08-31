@@ -1,0 +1,1 @@
+("7.2" racket ("66af74af8efcce23495e507badd249730aa43fb7" . "239beb61022e327ebdb1a138333a94a5cc51a6f4") #"/home/vic/climate-change-clint/chat-responses.rkt" #"/home/vic/climate-change-clint/utils.rkt" (collects #"errortrace" #"errortrace-key.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"srfi" #"13.rkt"))

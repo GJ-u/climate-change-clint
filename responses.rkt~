@@ -1,0 +1,77 @@
+#lang racket
+
+(require "functions.rkt")
+
+(provide (all-defined-out))
+#| CHAT VARIABLE DEFINITIONS |#
+
+(define nil '())
+
+;; used for both clint and user
+(define greeting
+  '("hello" "hi " " hi " "howdy" "hewwo there" "greetings traveller" "greetings" "what's up dog?"))
+
+(define farewell
+  '("Farewell" "Bye" "Goodbye" "See you" "See you later" "Ciao"))
+
+;; clint specific 
+(define questions
+  "How is the weather today?")
+
+;; clint specific
+(define tips
+  '("Remember to recycle!"
+   "When shopping, make sure that you bring your own bag."
+   "Try to avoid disposable products, such as disposable straws, plastic cutlery and other disposable goods."
+   "Use a drink bottle rather than buying bottled water!"
+   "Remember to choose local and organic food."
+   "Do you use a compost bin? Remember to compost."
+   "Drive efficiently today: fast acceleration, high speeds and abrupt stops waste energy."
+   "Remember to always opt for LED light bulbs."))
+  
+;; user specific (question!?!?)
+(define question
+  '("who" "what" "when" "where" "how" "why" "?"))
+
+;; used for both clint and user
+(define modal-verbs
+  '("can" "could" "must" "should" "will" "would" "may" "ought"))
+
+(define modal-verbs-i
+  '("need" "think" "want" "have"))
+
+;; clint specific
+(define affirmative-after-modal
+  '("Yes I" "Indeed I" "I sure" "I"))
+
+(define negative-after-modal
+  '("No I" "Sadly I" "Sorry I"))
+
+(define modal-i-response
+  '("Since when did you" "Why do you"))
+
+(define because-words
+  '("so " "so that" "because" " so " "since"))
+
+(define because-responses
+  '("Is that really so?" "That is so cool!" "Huh, interesting." "Woah, cool." "Oh really?" "That's strange."))
+
+#| CHAT FUNCTION DEFINITIONS |#
+
+(define (greeting-response)
+  (printf "Clint: ~a, ~a" (string-titlecase (choose greeting))
+          (string-downcase (choose tips))))
+
+(define (greeting-and-question)
+  (printf "Clint: ~a, ~a" (string-titlecase (choose greeting))
+          (string-downcase questions)))
+
+(define (modal-affirmative [mode (choose modal-verbs)])
+  (printf "Clint: ~a ~a!" (choose affirmative-after-modal) mode))
+
+(define (modal-i [mode (choose modal-verbs-i)])
+  (printf "Clint: ~a ~a that?" (choose modal-i-response) mode))
+
+(define (p str)
+  (printf "Clint: ~a" str))
+
