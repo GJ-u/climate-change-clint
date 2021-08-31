@@ -6,32 +6,42 @@
 
 #| CHAT FUNCTION DEFINITIONS |#
 
+; greet the user with a climate tip
 (define (greeting-response)
-  (printf "Clint: ~a, ~a" (string-titlecase (choose greeting))
+  (printf "Clint: ~a, ~a" (string-sentencecase (choose greeting))
           (string-downcase (choose tips))))
 
+; greet the user with a question
 (define (greeting-and-question)
-  (printf "Clint: ~a, ~a" (string-titlecase (choose greeting))
-          (string-downcase questions)))
+  (printf "Clint: ~a, ~a" (string-sentencecase (choose greeting))
+          (string-sentencecase questions)))
 
+; respond to a modal verb affirmatively
 (define (modal-affirmative [mode (choose modal-verbs)])
   (printf "Clint: ~a ~a!" (choose affirmative-after-modal) mode))
 
+; respond to i-modals
 (define (modal-i [mode (choose modal-verbs-i)])
   (printf "Clint: ~a ~a that?" (choose modal-i-response) mode))
 
+; used to insert "Clint:" before a string
 (define (p str)
   (printf "Clint: ~a" str))
 
+; ask about the weather and write the response to a file
 (define (ask-question)
-  (greeting-and-question)
+  (greeting-and-question) ; greet user and ask about the weather
   (let ((answer (prompt)))
-    (begin (with-output-to-file "user.txt" #:exists 'replace
-  (lambda () (printf "~a" answer)))
-           (printf "Clint: I see. ~a" (string-downcase (choose tips))))))
+    (begin (with-output-to-file "user.txt" #:exists 'replace ; create file user.txt, if it exists, overwrite
+  (lambda () (printf "~a" answer))) ; insert user's answer into user.txt
+           (printf "Clint: I see. ~a" (string-sentencecase (choose tips)))))) ; give generic response and tip
 
-
-
+; convert string to sentencecase
+(define/contract (string-sentencecase str)
+  (-> string? string?)
+  (match (regexp-match #px"^([^a-z]*)(.)(.+)" str)
+    [(list _ prefix first-letter rest-of-string)
+     (~a prefix (string-upcase first-letter) rest-of-string)]))
 
 ;; prompt: nil -> nil
 (define (prompt)

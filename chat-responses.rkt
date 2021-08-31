@@ -83,3 +83,6 @@
   '("I am Climate Change Clint, I provide you with tips on how to help the climate."
     "I'm Clint, a climate change chatbot!"
     "Clint is my name, I will chat with you and provide tips about climate change."))
+
+(define generic-responses
+  '("this is a generic response" "generic response!"))

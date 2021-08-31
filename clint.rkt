@@ -6,16 +6,17 @@
 (require "utils.rkt")
 (require "chat-functions.rkt")
 
-; main-loop:
+; main-loop: nil -> func
 (define (main-loop)
   (let ((input(string-downcase (prompt))))  
     (if (string-contains-or input farewell)
-        (p (string-titlecase (choose farewell)))
+        (p (string-sentencecase (choose farewell)))
         (begin
           (respond input )
           (main-loop)))))
 
-; respond: cond block is ordered in order of priority
+; respond: str -> func
+; cond block is ordered by priority
 (define (respond input)
   (cond
     [(string-contains-or input greeting)
@@ -35,6 +36,7 @@
     [(string-contains input "where") (p (choose where-answers))]
     [(string-contains input "when") (p (choose when-answers))]
     [(string-contains input "why") (p (choose why-answers))]
+    [else (p (choose generic-responses))]
     ))
 
 
