@@ -1,4 +1,4 @@
-;;; Climate Change Clint
+;;; Clint Climate Change
 
 #lang racket
 (require srfi/13)
