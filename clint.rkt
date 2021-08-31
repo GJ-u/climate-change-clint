@@ -1,9 +1,20 @@
-#lang racket
+;;; Climate Change Clint
 
+#lang racket
 (require srfi/13)
-(require "chat-variables.rkt")
-(require "chat-functions.rkt")
+(require "responses.rkt")
 (require "functions.rkt")
+
+;; prompt: nil -> nil
+(define (prompt)
+  (display "\n>> ")
+  (read-line))
+
+;; name: placeholder!!
+(define (name)
+  (display "What is your name? ")
+  (let ((name (read-line)))
+    name))
 
 ; main-loop:
 (define (main-loop)
@@ -22,8 +33,6 @@
        (if (= (random 2) 0)
            (greeting-response)
            (ask-question)))]
-        [(string-contains-or input user-questions) (p (choose user-questions-answer))]
-
     [(string-contains-or input question) (p (choose question))] ; placeholder
     ;; Dealing with modal verbs
     [(string-contains-or input modal-verbs)(modal-affirmative (string-contains-or input modal-verbs))]
@@ -31,5 +40,12 @@
      (modal-i (string-contains-or input modal-verbs-i))]
     [(string-contains-or input because-words) (p (choose because-responses))]
     ))
+
+(define (ask-question)
+  (greeting-and-question)
+  (let ((answer (prompt)))
+    (begin (with-output-to-file "user.txt" #:exists 'replace
+  (lambda () (printf "~a" answer)))
+           (printf "Clint: I see. ~a" (string-downcase (choose tips))))))
 
 (main-loop)
