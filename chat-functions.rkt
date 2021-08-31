@@ -30,7 +30,11 @@
   (lambda () (printf "~a" answer)))
            (printf "Clint: I see. ~a" (string-downcase (choose tips))))))
 
+
+
+
 ;; prompt: nil -> nil
 (define (prompt)
   (display "\n>> ")
   (read-line))
+

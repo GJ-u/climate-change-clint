@@ -15,7 +15,7 @@
           (respond input )
           (main-loop)))))
 
-; respond: 
+; respond: cond block is ordered in order of priority
 (define (respond input)
   (cond
     [(string-contains-or input greeting)
@@ -25,11 +25,16 @@
            (ask-question)))]
     [(string-contains-or input because-words) (p (choose because-responses))]
     [(string-contains-or input user-questions) (p (choose user-question-responses))]
-    [(string-contains-or input question) (p (choose question))] ; placeholder
     ;; Dealing with modal verbs
     [(string-contains-or input modal-verbs)(modal-affirmative (string-contains-or input modal-verbs))]
     [(and (string-contains input "i")(string-contains-or input modal-verbs-i))
      (modal-i (string-contains-or input modal-verbs-i))]
+    ;; Dealing with normal questions
+    [(string-contains input "what") (p (choose what-answers))]
+    [(string-contains input "who") (p (choose who-answers))]
+    [(string-contains input "where") (p (choose where-answers))]
+    [(string-contains input "when") (p (choose when-answers))]
+    [(string-contains input "why") (p (choose why-answers))]
     ))
 
 

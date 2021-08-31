@@ -27,10 +27,31 @@
    "Do you use a compost bin? Remember to compost."
    "Drive efficiently today: fast acceleration, high speeds and abrupt stops waste energy."
    "Remember to always opt for LED light bulbs."))
-  
-;; user specific (question!?!?)
+
+
+;; Questions and responses
 (define question
-  '("who" "what" "when" "where" "how" "why" "?"))
+  '("who" "what" "when" "where" "how" "why"))
+
+(define who-answers
+  '("??" "I don't know who."))
+
+(define what-answers
+  '("I don't know..." "You might not like the answer."))
+
+(define how-answers
+  '("Why do you need to know?" "You might not like the answer."))
+
+(define when-answers
+  '("Some time after 1AD" "This year." "Never." "Always."))
+
+(define where-answers
+  '("I am not sure." "Right there!" "Hmm, somewhere."))
+
+(define why-answers
+  '("Why do you ask?" "Why do you need to know?" "The answer may suprise you."))
+
+
 
 ;; used for both clint and user
 (define modal-verbs
@@ -54,7 +75,6 @@
 
 (define because-responses
   '("Is that really so?" "That is so cool!" "Huh, interesting." "Woah, cool." "Oh really?" "That's strange."))
-
 
 (define user-questions
   '("what is your name" "what do you do" "what is your purpose" "who are you" "what can you do"))
