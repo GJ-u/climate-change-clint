@@ -25,8 +25,8 @@
   (printf "Clint: ~a ~a that?" (choose modal-i-response) mode))
 
 ; used to insert "Clint:" before a string
-(define (p str)
-  (printf "Clint: ~a" str))
+(define (p str [str2 ""])
+  (printf "Clint: ~a ~a" str str2))
 
 ; ask about the weather and write the response to a file
 (define (ask-question)
@@ -35,13 +35,6 @@
     (begin (with-output-to-file "user.txt" #:exists 'replace ; create file user.txt, if it exists, overwrite
   (lambda () (printf "~a" answer))) ; insert user's answer into user.txt
            (printf "Clint: I see. ~a" (string-sentencecase (choose tips)))))) ; give generic response and tip
-
-; convert string to sentencecase
-(define/contract (string-sentencecase str)
-  (-> string? string?)
-  (match (regexp-match #px"^([^a-z]*)(.)(.+)" str)
-    [(list _ prefix first-letter rest-of-string)
-     (~a prefix (string-upcase first-letter) rest-of-string)]))
 
 ;; prompt: nil -> nil
 (define (prompt)

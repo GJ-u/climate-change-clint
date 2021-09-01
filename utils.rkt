@@ -17,6 +17,16 @@
     [(and (string-contains str str-must)(string-contains-or str lst)) #t]
     [else #f]))
 
+; convert string to sentencecase
+; see https://docs.racket-lang.org/reference/regexp.html
+(define/contract (string-sentencecase str)
+  (-> string? string?) ; make sure that str is a string
+  (match (regexp-match #px"^([^a-z]*)(.)(.+)" str) ; find the first lowercase alphabetical character
+    [(list _ prefix first-letter rest-of-string) 
+     (~a prefix (string-upcase first-letter) rest-of-string)])) ; capitalise the first letter, leaving the rest untouched
+
+(string-sentencecase "hello i am clint")
+
 ;; choose : lst -> int
 (define (choose lst)
   (list-ref lst (random (length lst))))

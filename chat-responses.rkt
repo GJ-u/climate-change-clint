@@ -15,18 +15,18 @@
 
 ;; clint specific 
 (define questions
-  "How is the weather today?")
+  "how is the weather today?")
 
 ;; clint specific
 (define tips
-  '("Remember to recycle!"
-   "When shopping, make sure that you bring your own bag."
-   "Try to avoid disposable products, such as disposable straws, plastic cutlery and other disposable goods."
-   "Use a drink bottle rather than buying bottled water!"
-   "Remember to choose local and organic food."
-   "Do you use a compost bin? Remember to compost."
-   "Drive efficiently today: fast acceleration, high speeds and abrupt stops waste energy."
-   "Remember to always opt for LED light bulbs."))
+  '("remember to recycle!"
+   "when shopping, make sure that you bring your own bag."
+   "try to avoid disposable products, such as disposable straws, plastic cutlery and other disposable goods."
+   "use a drink bottle rather than buying bottled water!"
+   "remember to choose local and organic food."
+   "do you use a compost bin? Remember to compost."
+   "drive efficiently today: fast acceleration, high speeds and abrupt stops waste energy."
+   "remember to always opt for LED light bulbs."))
 
 
 ;; Questions and responses
