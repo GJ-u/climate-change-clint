@@ -58,7 +58,7 @@
     "Clint is my name, I will chat with you and provide tips about climate change."))
 
 (define generic-responses
-  '("this is a generic response" "generic response!"))
+  '("this is a generic response" "Mhm..."))
 
 ;; used when input contains modal i - verb
 ;; input: i NEED chocolate -> Clint: Why do you NEED (that)

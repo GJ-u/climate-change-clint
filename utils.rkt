@@ -25,8 +25,6 @@
     [(list _ prefix first-letter rest-of-string) 
      (~a prefix (string-upcase first-letter) rest-of-string)])) ; capitalise the first letter, leaving the rest untouched
 
-(string-sentencecase "hello i am clint")
-
 ;; choose : lst -> int
 (define (choose lst)
   (list-ref lst (random (length lst))))

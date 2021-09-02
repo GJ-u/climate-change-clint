@@ -6,6 +6,11 @@
 
 #| CHAT FUNCTION DEFINITIONS |#
 
+;; prompt: nil -> nil
+(define (prompt)
+  (display "\n>> ")
+  (read-line))
+
 ; greet the user with a climate tip
 (define (greeting-response)
   (printf "Clint: ~a, ~a" (string-sentencecase (choose greeting))
@@ -37,13 +42,8 @@
            (printf "Clint: I see. ~a" (string-sentencecase (choose tips)))))) ; give generic response and tip
 
 (define (ask-name)
+  (p "Please tell me your name.")
   (let ((answer (prompt)))
     (begin (with-output-to-file "name.txt" #:exists 'replace
              (lambda () (printf "~a" answer)))
-           (printf "Clint: Name recieved and written to file."))))
-
-;; prompt: nil -> nil
-(define (prompt)
-  (display "\n>> ")
-  (read-line))
-
+           (p "Name recieved and written to file."))))

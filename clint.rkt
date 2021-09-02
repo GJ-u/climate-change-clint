@@ -19,6 +19,7 @@
 ; cond block is ordered by priority
 (define (respond input)
   (cond
+    [(string-ci=? input "name") (ask-name)]
     [(string-contains-or input greeting)
      (begin
        (if (= (random 2) 0)
@@ -36,9 +37,10 @@
     [(string-contains input "where") (p (choose where-answers))]
     [(string-contains input "when") (p (choose when-answers))]
     [(string-contains input "why") (p (choose why-answers))]
+    [(string-contains input "how") (p (choose how-answers))]
     [else (p (choose generic-responses))]
     ))
 
 
-
+(p "Hello, to set your name, type \'name\'. ")
 (main-loop)
