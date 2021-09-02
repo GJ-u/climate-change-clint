@@ -32,9 +32,15 @@
 (define (ask-question)
   (greeting-and-question) ; greet user and ask about the weather
   (let ((answer (prompt)))
-    (begin (with-output-to-file "user.txt" #:exists 'replace ; create file user.txt, if it exists, overwrite
+    (begin (with-output-to-file "weather.txt" #:exists 'replace ; create file user.txt, if it exists, overwrite
   (lambda () (printf "~a" answer))) ; insert user's answer into user.txt
            (printf "Clint: I see. ~a" (string-sentencecase (choose tips)))))) ; give generic response and tip
+
+(define (ask-name)
+  (let ((answer (prompt)))
+    (begin (with-output-to-file "name.txt" #:exists 'replace
+             (lambda () (printf "~a" answer)))
+           (printf "Clint: Name recieved and written to file."))))
 
 ;; prompt: nil -> nil
 (define (prompt)
