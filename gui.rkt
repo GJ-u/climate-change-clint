@@ -1,6 +1,6 @@
 #lang racket/gui
 
-(require "clint.rkt")
+;(require "clint.rkt")
 
 
 (define w (new frame%
@@ -16,6 +16,22 @@
                        [horiz-margin 10]
                        [alignment '(left top)]))
 
+(define canvas (new editor-canvas%
+                   [parent w]
+                   ))
+
+(define editor (new text%))
+(send editor lock #t)
+(send canvas set-editor editor)
+
+(define (f t e)
+  (if (equal? 'text-field-enter (send e get-event-type) )
+      (begin
+        (send editor lock #f)
+        (send editor insert (string-append (send t get-value) "\n"))
+        (send editor lock #t))
+      '()))
+
 (define input (new text-field%
                    [parent w]
                    [label ">>"]
@@ -24,10 +40,8 @@
                    [vert-margin 10]
                    [horiz-margin 10]
                    [stretchable-width #t]
-                   [stretchable-height #f]))
+                   [stretchable-height #f]
+                   [callback f]))
 
-(define text (new message%
-                  [parent w]
-                  [label "clint's response"]))
 
 (send w show #t)
