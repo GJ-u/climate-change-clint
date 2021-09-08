@@ -25,6 +25,3 @@
   (string-append "Clint: " (choose modal-i-response) " " mode " that?"))
 
 
-
-
-
