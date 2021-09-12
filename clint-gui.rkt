@@ -1,6 +1,4 @@
 #lang racket/gui
-
-
 (require "chat-functions-gui.rkt")
 (require "clint-cli/utils.rkt")
 (require "clint-cli/chat-responses.rkt")
@@ -26,25 +24,21 @@
     ;; Dealing with specific questions or explanations
     [(string-contains-or input because-words) (string-append "Clint: " (choose because-responses))]
     [(string-contains-or input user-questions) (string-append "Clint: " (choose user-question-responses))]
+    [(string-contains-or input hru-questions) (string-append "Clint: " (choose hru-responses))]
     ;; Dealing with modal verbs
     [(string-contains-or input modal-verbs)(modal-affirmative (string-contains-or input modal-verbs))]
     [(and (string-contains input "i")(string-contains-or input modal-verbs-i))
      (modal-i (string-contains-or input modal-verbs-i))]
     ;; Dealing with normal questions
-    [(string-contains input "what") (string-append "Clint: " (choose what-answers))]
-    [(string-contains input "who") (string-append "Clint: " (choose who-answers))]
-    [(string-contains input "where") (string-append "Clint: " (choose where-answers))]
-    [(string-contains input "when") (string-append "Clint: " (choose when-answers))]
-    [(string-contains input "why") (string-append "Clint: " (choose why-answers))]
-    [(string-contains input "how") (string-append "Clint: " (choose how-answers))]
+    [(string-contains-or input '("what" "who" "where" "when" "why" "how" "clint")) (wh-response input)]
     ;; Give generic response
     [else (string-append "Clint: " (choose generic-responses))]
     ))
 
 ;; ask-name: nil -> str
 (define (ask-name)
-  (set! await-name #t)
-  "Clint: Please tell me your name.")
+    (set! await-name #t)
+    (name-question))
 
 ;; ask-question: nil -> func
 (define (ask-question)
@@ -60,22 +54,33 @@
 (define w (new frame%
                [label "Climate Change Clint"]
                [width 800]
-               [height 800]
+               [height 300]
                [style '(fullscreen-button)]
                [alignment '(left top)]))
+
+(define const-text (new message%
+                        [label "  You are now speaking with Climate Change Clint. To set your name, type 'name'."]
+                        [parent w]
+                        [vert-margin 10]))
 
 ;; horizontal panel for alignment
 (define top-panel (new horizontal-pane%
                        [parent w]
                        [vert-margin 10]
                        [horiz-margin 10]
-                       [alignment '(left top)]))
+                       [alignment '(left bottom)]))
+
+(define clint-portrait (new button%
+         [parent top-panel]
+         [label (list clint-neutral "" 'top)]
+         [min-width 250]
+         [min-height 250]))
 
 ;; canvas to write text to
 (define canvas (new editor-canvas%
-                    [parent w]
+                    [parent top-panel]
                     [style '(no-focus hide-hscroll)]
-                    ))
+                    [min-height 250]))
 
 ;; define the text that will be written to the canvas
 ;; used for both input and output
@@ -92,29 +97,34 @@
         (send editor lock #f)
         (send editor insert (string-append "\n" (send t get-value) "\n"))
         (let ((input (string-downcase (send t get-value))))
-          
+          ; check whether writing to file is needed
           (cond
             [await-weather
-              (begin
-                (with-output-to-file "weather.txt" #:exists 'replace
+              (begin0 (with-output-to-file "weather.txt" #:exists 'replace
                   (lambda () (printf "~a" input)))
                 (set! await-weather #f))]
             [await-name
-              (begin
-                (with-output-to-file "name.txt" #:exists 'replace
+              (begin0 (with-output-to-file "name.txt" #:exists 'replace
                   (lambda () (printf "~a" input)))
-                (set! await-weather #f))]
+                (set! await-name #f))]
             [else nil])
-          
-          (send txt set-value "")
+          ; change clint portraits at random
+          (case (random 3)
+            [(0) (send clint-portrait set-label clint-happy)]
+            [(1) (send clint-portrait set-label clint-neutral)]
+            [(2) (send clint-portrait set-label clint-goofy)])          
+          (send txt set-value "") ; clear text field
+          ; clint's response
           (send style set-delta-foreground "Olive")
           (send editor change-style style)
           (send editor insert (respond input))
+          ; reset colours and lock editor
           (send style set-delta-foreground "black")
           (send editor change-style style)
           (send editor lock #t)))
       nil))
 
+; text input field
 (define txt (new text-field%
                  [parent w]
                  [label ">>"]
