@@ -10,9 +10,9 @@
     (set! name (file->string "name.txt"))
     '())
 
-(define clint-neutral (read-bitmap "portraits/clint.png"))
-(define clint-happy (read-bitmap "portraits/clint-happy.png"))
-(define clint-goofy (read-bitmap "portraits/clint-goofy.png"))
+(define clint-neutral (read-bitmap (build-path "portraits" "clint.png")))
+(define clint-happy (read-bitmap (build-path "portraits" "clint-happy.png")))
+(define clint-goofy (read-bitmap (build-path "portraits" "clint-goofy.png")))
 
 
 #| CHAT FUNCTION DEFINITIONS |#
@@ -49,3 +49,8 @@
     [(string-contains input "why") (string-append "Clint: " (choose why-answers))]
     [(string-contains input "how") (string-append "Clint: " (choose how-answers))]
     [(string-contains input "clint") "Clint: That's my name!"]))
+
+
+
+
+
