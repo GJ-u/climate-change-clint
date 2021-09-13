@@ -72,7 +72,7 @@
 
 (define clint-portrait (new button%
          [parent top-panel]
-         [label (list clint-neutral "" 'top)]
+         [label clint-neutral]
          [min-width 250]
          [min-height 250]))
 
