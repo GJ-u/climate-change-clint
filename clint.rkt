@@ -1,7 +1,7 @@
 #lang racket/gui
 
-(require "clint-gui.rkt")
-(require "clint-cli/clint.rkt")
+(require "gui.rkt")
+(require "clint-cli/cli.rkt")
 
 (define gui-mode (make-parameter #f))
 (define cli-mode (make-parameter #f))

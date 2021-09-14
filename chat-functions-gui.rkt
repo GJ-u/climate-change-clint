@@ -5,10 +5,14 @@
 (provide (all-defined-out))
 
 (define name "")
+(define weather "")
 
 (if (file-exists? "name.txt")
     (set! name (file->string "name.txt"))
-    '())
+    "")
+(if (file-exists? "weather.txt")
+    (set! weather (file->string "weather.txt"))
+    "")
 
 (define clint-neutral (read-bitmap (build-path "portraits" "clint.png")))
 (define clint-happy (read-bitmap (build-path "portraits" "clint-happy.png")))
@@ -28,7 +32,12 @@
 (define (greeting-and-question)
   (string-append "Clint: "(string-sentencecase (choose greeting))
                  (string-append " "(string-titlecase name))
-                 ", " (string-sentencecase questions))) 
+                 ", " (string-sentencecase questions)))
+
+; greet user and mention weather
+(define (weather-mention)
+  (string-append "Clint: " (string-sentencecase (choose greeting)) ", last time we spoke, you said the weather was "
+                 weather ". Is that still the case?"))
 
 ; respond to a modal verb affirmatively
 (define (modal-affirmative [mode (choose modal-verbs)])
