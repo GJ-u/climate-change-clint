@@ -3,6 +3,7 @@
 (require "clint-cli/utils.rkt")
 (require "clint-cli/chat-responses.rkt")
 (require srfi/13)
+(provide (all-defined-out))
 
 ;; variable definitions
 (define nil '())
@@ -136,4 +137,4 @@
                  [stretchable-height #f]
                  [callback f]))
 
-(send w show #t)
+

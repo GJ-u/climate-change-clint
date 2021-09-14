@@ -5,6 +5,7 @@
 (require "chat-responses.rkt")
 (require "utils.rkt")
 (require "chat-functions.rkt")
+(provide (all-defined-out))
 
 ; main-loop: nil -> func
 (define (main-loop)
@@ -12,12 +13,12 @@
     (if (string-contains-or input farewell)
         (p (string-sentencecase (choose farewell)))
         (begin
-          (respond input )
+          (respondc input )
           (main-loop)))))
 
 ; respond: str -> func
 ; cond block is ordered by priority
-(define (respond input)
+(define (respondc input)
   (cond
     [(string-ci=? input "name") (ask-name)]
     [(string-contains-or input greeting)
@@ -41,6 +42,6 @@
     [else (p (choose generic-responses))]
     ))
 
-
-(p "Hello, to set your name, type \'name\'. ")
-(main-loop)
+(define (start-clint)
+  (printf "You are now speaking to Climate Change Clint, to set your name, type 'name'")
+  (main-loop))
