@@ -17,26 +17,27 @@
 (define clint-neutral (read-bitmap (build-path "portraits" "clint.png")))
 (define clint-happy (read-bitmap (build-path "portraits" "clint-happy.png")))
 (define clint-goofy (read-bitmap (build-path "portraits" "clint-goofy.png")))
-
+(define clint-sad (read-bitmap (build-path "portraits" "clint-sad.png")))
+(define clint-sob (read-bitmap (build-path "portraits" "clint-sob.png")))
 
 #| CHAT FUNCTION DEFINITIONS |#
 
 ; greet the user with a climate tip
 (define (greeting-response)
-  (string-append "Clint: " (string-sentencecase (choose greeting))
+  (string-append (string-sentencecase (choose greeting))
                  (case (random 2) [(0) (string-append " " (string-titlecase name))]
                    [(1) ""]) ", "
                  (string-downcase (choose tips))))
 
 ; greet the user with a question
 (define (greeting-and-question)
-  (string-append "Clint: "(string-sentencecase (choose greeting))
+  (string-append (string-sentencecase (choose greeting))
                  (string-append " "(string-titlecase name))
                  ", " (string-sentencecase questions)))
 
 ; greet user and mention weather
 (define (weather-mention)
-  (string-append "Clint: " (string-sentencecase (choose greeting)) ", last time we spoke, you said the weather was "
+  (string-append (string-sentencecase (choose greeting)) ", last time we spoke, you said the weather was "
                  weather ". Is that still the case?"))
 
 ; respond to a modal verb affirmatively
@@ -45,19 +46,11 @@
 
 ; respond to i-modals
 (define (modal-i [mode (choose modal-verbs-i)])
-  (string-append "Clint: " (choose modal-i-response) " " mode " that?"))
+  (string-append (choose modal-i-response) " " mode " that?"))
 
-(define (name-question) (string-append "Clint: " "What is your name?"))
+(define (name-question) "What is your name?")
 
-(define (wh-response input)
-  (cond
-    [(string-contains input "what") (string-append "Clint: " (choose what-answers))]
-    [(string-contains input "who") (string-append "Clint: " (choose who-answers))]
-    [(string-contains input "where") (string-append "Clint: " (choose where-answers))]
-    [(string-contains input "when") (string-append "Clint: " (choose when-answers))]
-    [(string-contains input "why") (string-append "Clint: " (choose why-answers))]
-    [(string-contains input "how") (string-append "Clint: " (choose how-answers))]
-    [(string-contains input "clint") "Clint: That's my name!"]))
+
 
 
 

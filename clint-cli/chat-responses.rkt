@@ -68,7 +68,16 @@
 
 ; https://www.wired.co.uk/article/climate-change-facts-2019
 (define hru-responses
-  '("I am fine thank you, and you?" "I'm alright, just thinking about the fact that there is more carbon dioxide in our athmosphere now than at any point during human history." "I am feeling terrible. Average wildlife populations have dropped by 60% in the past 40 years." "I am doing alright, as alright as I can be knowing that humans have already caused 1.07C of global heating." ))
+  '("I am fine thank you, and you?"
+    "I'm alright, just thinking about the fact that there is more carbon dioxide in our athmosphere now than at any point during human history."
+    "I am feeling terrible. Average wildlife populations have dropped by 60% in the past 40 years."
+    "I am doing alright, as alright as I can be knowing that humans have already caused 1.07C of global heating." ))
+
+(define no-responses
+  '("Oh? Why not?" "Noooo :(" "Oh, right." "Do you really think that is the case?" "Ah, is that a good or a bad thing?"))
+
+(define yes-responses
+  '("Yay!" "Cool..." "That's right!" "Mhm..." "Is that a good or a bad thing?" "Great!"))
 
 #| CLINT AND USER |#
 (define modal-verbs
@@ -78,7 +87,7 @@
   '("need" "think" "want" "have"))
 
 (define greeting
-  '("hello" "hi " " hi " "howdy" "hewwo there" "greetings traveller" "greetings" "what's up dog?" "hewwo"))
+  '("hello" "howdy" "hewwo there" "greetings traveller" "greetings" "what's up dog?" "hewwo"))
 
 (define farewell
   '("farewell" "bye" "goodbye" "see you" "see you later" "ciao"))
@@ -95,3 +104,5 @@
 (define hru-questions
   '("how are you" "what's up" "whats up" "hru" "what are you doing" "how are you"))
 
+(define else-words
+  '("what" "who" "where" "when" "why" "how" "clint" "yes" "no"))
