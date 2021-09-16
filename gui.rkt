@@ -1,8 +1,6 @@
 #lang racket/gui
 (require "chat-functions-gui.rkt")
 (require "clint-cli/utils.rkt")
-(require "clint-cli/chat-responses.rkt")
-(require "big-brain.rkt")
 (require "responses.rkt")
 (require srfi/13)
 (provide (all-defined-out))
@@ -12,9 +10,9 @@
 (define await-weather #f)
 (define await-name #f)
 
-(define (respondq input)
+(define (respond input)
   (cond
-    [(string-contains-orq input (caar clint-pairs)) (exit)]
+    [(string-contains-or input (caar clint-pairs)) (exit)]
     [(string-ci=? input "name") (ask-name)]
     [(string-contains-or input greeting)
      (case (random 3)
@@ -31,7 +29,7 @@
 ;; ask-name: nil -> str
 (define (ask-name)
   (set! await-name #t)
-  (name-question))
+  "What is your name?")
 
 ;; ask-question: nil -> func
 (define (ask-question)
@@ -113,7 +111,7 @@
           ; clint's response
           (send style set-delta-foreground "Olive")
           (send editor change-style style)
-          (send editor insert (string-append "Clint: " (respondq input)))
+          (send editor insert (string-append "Clint: " (respond input)))
           ; reset colours and lock editor
           (send style set-delta-foreground "black")
           (send editor change-style style)
