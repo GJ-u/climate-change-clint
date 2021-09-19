@@ -19,7 +19,7 @@
 ; greet the user with a question
 (define (greeting-and-question)
   (printf "Clint: ~a, ~a" (string-sentencecase (choose greeting))
-          (string-sentencecase questions)))
+         "how is the weather today?"))
 
 ; respond to a modal verb affirmatively
 (define (modal-affirmative [mode (choose modal-verbs)])
@@ -48,10 +48,8 @@
              (lambda () (printf "~a" answer)))
            (p "Name recieved and written to file."))))
 
-
-(define (n input) (cond     [(string-contains input "what") (string-append "Clint: " (choose what-answers))]
-    [(string-contains input "who") (string-append "Clint: " (choose who-answers))]
-    [(string-contains input "where") (string-append "Clint: " (choose where-answers))]
-    [(string-contains input "when") (string-append "Clint: " (choose when-answers))]
-    [(string-contains input "why") (string-append "Clint: " (choose why-answers))]
-    [(string-contains input "how") (string-append "Clint: " (choose how-answers))]))
+(define (q input clint-pairs)
+  (cond
+    [(null? clint-pairs) (choose generic-responses)]
+    [(string-contains-or input (caar clint-pairs)) (choose (cdar clint-pairs))]
+    [else (q input (cdr clint-pairs))]))
