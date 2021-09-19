@@ -163,4 +163,3 @@ Climate Change Clint is licensed under GPLv3
                      (send alignment-a delete-child open-text)
                      (make-clint)))]))
 
-(send w show #t)

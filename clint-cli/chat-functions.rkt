@@ -11,6 +11,11 @@
   (display "\n>> ")
   (read-line))
 
+(define (repl)
+(let ((ns (make-base-namespace)))
+  (printf "INPUT> ")
+  (printf "CLINT> ~a\n" (eval (read) ns)) (repl)))
+
 ; greet the user with a climate tip
 (define (greeting-response)
   (printf "Clint: ~a, ~a" (string-sentencecase (choose greeting))

@@ -11,12 +11,12 @@
     (if (string-contains-or input (caar clint-pairs))
         (p (choose (cdar clint-pairs)))
         (begin
-          (respond input)
+          (respondc input)
           (main-loop)))))
 
 ; respond: str -> func
 ; cond block is ordered by priority
-(define (respond input)
+(define (respondc input)
   (cond
     [(string-ci=? input "name") (ask-name)]
     [(string-contains-or input greeting)
