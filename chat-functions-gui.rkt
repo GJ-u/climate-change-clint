@@ -1,7 +1,7 @@
 #lang racket/gui
 (require srfi/13)
 (require "clint-cli/utils.rkt")
-(require "responses.rkt")
+(require "clint-cli/responses.rkt")
 (provide (all-defined-out))
 
 (define name "")

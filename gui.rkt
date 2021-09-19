@@ -1,7 +1,7 @@
 #lang racket/gui
 (require "chat-functions-gui.rkt")
 (require "clint-cli/utils.rkt")
-(require "responses.rkt")
+(require "clint-cli/responses.rkt")
 (require srfi/13)
 (provide (all-defined-out))
 
