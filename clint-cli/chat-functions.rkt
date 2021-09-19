@@ -1,6 +1,6 @@
 #lang racket
 (require srfi/13)
-(require "chat-responses.rkt")
+(require "responses.rkt")
 (require "utils.rkt")
 (provide (all-defined-out))
 

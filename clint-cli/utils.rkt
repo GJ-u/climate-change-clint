@@ -23,7 +23,7 @@
   (-> string? string?) ; make sure that str is a string
   (match (regexp-match #px"^([^a-z]*)(.)(.+)" str) ; find the first lowercase alphabetical character
     [(list _ prefix first-letter rest-of-string) 
-     (~a prefix (string-upcase first-letter) rest-of-string)])) ; capitalise the first letter, leaving the rest untouched
+     (~a prefix (string-upcase first-letter) rest-of-string)])) ; capitalise the first lowercase letter, leaving the rest untouched
 
 ;; choose : lst -> int
 (define (choose lst)
