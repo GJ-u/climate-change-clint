@@ -7,6 +7,6 @@
 
 **TO-DO**
 - new personalities for clint
-- launch page
+- ~~launch page~~ add hyperlinks to launch page
 - working racket repl inside clint?
-- fix clint-cli
+- add remembering the weather to clint-cli
