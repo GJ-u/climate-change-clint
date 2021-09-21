@@ -46,11 +46,18 @@
                [style '(fullscreen-button)]
                [alignment '(left top)]))
 
-(define (make-clint)
-  
-  (define style (make-object style-delta% 
-                  'change-normal-color))
+;; used to change the colour of the text
+(define style (make-object style-delta% 
+                'change-normal-color))
 
+;; editor: displays interactions between clint and user
+(define editor (new text%
+  [auto-wrap #t]))
+(send editor lock #t) ; disable typing in the editor
+
+(define (make-clint)
+
+  ;; descriptive text
   (define const-text (new message%
                           [label "  You are now speaking with Climate Change Clint. To set your name, type 'name'."]
                           [parent w]
@@ -63,6 +70,7 @@
                          [horiz-margin 10]
                          [alignment '(left bottom)]))
 
+  ;; display clint's beautiful face
   (define clint-portrait (new button%
                               [parent top-panel]
                               [label clint-neutral]
@@ -72,24 +80,17 @@
   ;; canvas to write text to
   (define canvas (new editor-canvas%
                       [parent top-panel]
+                      [editor editor]
                       [style '(no-focus hide-hscroll)]
                       [min-height 250]))
 
-  ;; define the text that will be written to the canvas
-  ;; used for both input and output
-  (define editor (new text%))
-  (send editor lock #t) ; disable typing in the editor
-  (send editor auto-wrap #t) ; wrap text in the editor
-
-  (send canvas set-editor editor) ; set the canvas to recieve this text
-
-  ;; text-field callback
-  (define (f t e)
-    (if (equal? 'text-field-enter (send e get-event-type) )
+  ;; handle events in text field
+  (define (event-handler text-field event)
+    (if (equal? 'text-field-enter (send event get-event-type) )
         (begin
           (send editor lock #f)
-          (send editor insert (string-append "\n" (send t get-value) "\n"))
-          (let ((input (string-downcase (send t get-value))))
+          (send editor insert (string-append "\n" (send text-field get-value) "\n"))
+          (let ((input (string-downcase (send text-field get-value))))
             ; check whether writing to file is needed
             (cond
               [await-weather
@@ -129,37 +130,5 @@
                    [horiz-margin 10]
                    [stretchable-width #t]
                    [stretchable-height #f]
-                   [callback f]))
-  nil
-  )
-
-(define alignment-a
-  (new horizontal-pane%
-       [parent w]
-       [alignment '(center bottom)]))
-
-(define alignment-b
-  (new horizontal-pane%
-       [parent w]
-       [alignment '(center top)]))
-
-(define open-text
-  (new message%
-       [parent alignment-a]
-       [label "      This is Climate Change Clint v1.0
-Climate Change Clint is licensed under GPLv3 
-    and comes with ABSOLUTELY NO WARRANTY.
-"]))
-
-(define launch-button
-  (new button%
-       [parent alignment-b]
-       [label "Launch Clint"]
-       [min-width 250]
-       [min-height 70]
-       [callback (lambda (t e)
-                   (begin
-                     (send alignment-b delete-child launch-button)
-                     (send alignment-a delete-child open-text)
-                     (make-clint)))]))
-
+                   [callback event-handler]))
+  nil)

@@ -1,6 +1,6 @@
 #lang racket/gui
 
-(require "gui.rkt")
+(require "start-gui.rkt")
 (require "clint-cli/cli.rkt")
 
 (define gui-mode (make-parameter #f))
@@ -12,5 +12,5 @@
    [("--cli") "Run Climate Change Clint in CLI mode."
               (start-clint)]
    [("--gui") "Run Climate Change Clint in GUI mode."
-              (send w show #t)]))
+              (open-gui)]))
 
