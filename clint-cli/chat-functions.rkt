@@ -23,10 +23,10 @@
 
 ; respond to a modal verb affirmatively
 (define (modal-affirmative [mode (choose modal-verbs)])
-  (printf "Clint: ~a"
-          (if (= (random 2) 0)
-              (string-append (choose affirmative-after-modal) " " mode)
-              (string-append (choose negative-after-modal) " " mode " not"))))
+  (p
+   (if (= (random 2) 0)
+       (string-append (choose affirmative-after-modal) " " mode)
+       (string-append (choose negative-after-modal) " " mode " not."))))
 
 ; respond to i-modals
 (define (modal-i [mode (choose modal-verbs-i)])

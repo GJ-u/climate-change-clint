@@ -7,11 +7,12 @@
 (define name (if (file-exists? "name.txt") (file->string "name.txt") ""))
 (define weather (if (file-exists? "weather.txt") (file->string "weather.txt") ""))
 
-(define clint-neutral (read-bitmap (build-path "portraits" "clint.png")))
-(define clint-happy (read-bitmap (build-path "portraits" "clint-happy.png")))
-(define clint-goofy (read-bitmap (build-path "portraits" "clint-goofy.png")))
-(define clint-sad (read-bitmap (build-path "portraits" "clint-sad.png")))
-(define clint-sob (read-bitmap (build-path "portraits" "clint-sob.png")))
+(define clint-list (list
+                    (read-bitmap (build-path "portraits" "clint.png"))
+                    (read-bitmap (build-path "portraits" "clint-happy.png"))
+                    (read-bitmap (build-path "portraits" "clint-goofy.png"))
+                    (read-bitmap (build-path "portraits" "clint-sad.png"))
+                     (read-bitmap (build-path "portraits" "clint-sob.png"))))
 
 #| CHAT FUNCTION DEFINITIONS |#
 
