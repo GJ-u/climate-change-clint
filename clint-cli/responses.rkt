@@ -72,7 +72,7 @@
   '("can" "could" "must" "should" "will" "would" "may" "ought" "might"))
 
 (define modal-verbs-i
-  '("need" "think" "want" "have"))
+  '("need" "think" "want" "have" "do"))
 
 (define greeting
   '("hello" "hewwo" "hey" "hey there" "hi " "greetings traveller" "yo!" "hello there" ))

@@ -4,15 +4,8 @@
 (require "clint-cli/responses.rkt")
 (provide (all-defined-out))
 
-(define name "")
-(define weather "")
-
-(if (file-exists? "name.txt")
-    (set! name (file->string "name.txt"))
-   null)
-(if (file-exists? "weather.txt")
-    (set! weather (file->string "weather.txt"))
-    null)
+(define name (if (file-exists? "name.txt") (file->string "name.txt") ""))
+(define weather (if (file-exists? "weather.txt") (file->string "weather.txt") ""))
 
 (define clint-neutral (read-bitmap (build-path "portraits" "clint.png")))
 (define clint-happy (read-bitmap (build-path "portraits" "clint-happy.png")))

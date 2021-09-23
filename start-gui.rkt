@@ -35,6 +35,5 @@ Climate Change Clint is licensed under GPLv3
                      (send alignment-a delete-child open-text)
                      (make-clint)))]))
 
-(define (open-gui)
-(send w show #t))
+(define (open-gui)(send w show #t))
 

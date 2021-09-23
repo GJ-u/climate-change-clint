@@ -3,9 +3,6 @@
 (require "start-gui.rkt")
 (require "clint-cli/cli.rkt")
 
-(define gui-mode (make-parameter #f))
-(define cli-mode (make-parameter #f))
-
 (define command-line-arguments
   (command-line
    #:final
