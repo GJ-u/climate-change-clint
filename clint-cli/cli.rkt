@@ -1,8 +1,6 @@
 #lang racket
 (require srfi/13)
-(require "responses.rkt")
-(require "utils.rkt")
-(require "chat-functions.rkt")
+(require "responses.rkt" "chat-functions.rkt" "utils.rkt")
 (provide (all-defined-out))
 
 ; main-loop: nil -> func
@@ -21,9 +19,11 @@
     [(string-ci=? input "name") (ask-name)]
     [(string-contains-or input greeting)
      (begin
-       (if (= (random 2) 0)
-           (greeting-response)
-           (ask-question)))]
+       (case (random 3)
+         [(0) (greeting-response)]
+         [(1) (greeting-and-question)]
+         [(2) (if (file-exists? "weather.txt") (mention-weather)
+                  (greeting-response))]))]
     ;; Dealing with modal verbs
     [(string-contains-or input modal-verbs)(modal-affirmative (string-contains-or input modal-verbs))]
     [(and (string-contains input "i")(string-contains-or input modal-verbs-i))

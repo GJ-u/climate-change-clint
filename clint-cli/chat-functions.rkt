@@ -21,6 +21,10 @@
   (printf "Clint: ~a, ~a" (string-sentencecase (choose greeting))
           "how is the weather today?"))
 
+(define (mention-weather)
+  (printf "Clint: Last time we spoke, you said that the weather was ~a, is that still the case?"
+          (file->string "weather.txt")))
+
 ; respond to a modal verb affirmatively
 (define (modal-affirmative [mode (choose modal-verbs)])
   (p
