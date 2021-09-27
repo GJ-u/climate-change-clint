@@ -13,12 +13,12 @@
 
 ; greet the user with a climate tip
 (define (greeting-response)
-  (printf "Clint: ~a, ~a" (string-sentencecase (choose greeting))
+  (p (string-sentencecase (choose greeting))
           (string-downcase (choose tips))))
 
 ; greet the user with a question
 (define (greeting-and-question)
-  (printf "Clint: ~a, ~a" (string-sentencecase (choose greeting))
+  (p (string-sentencecase (choose greeting))
           "how is the weather today?"))
 
 (define (mention-weather)
@@ -34,7 +34,7 @@
 
 ; respond to i-modals
 (define (modal-i [mode (choose modal-verbs-i)])
-  (printf "Clint: ~a ~a that?" (choose modal-i-response) mode))
+  (p (choose modal-i-response) mode))
 
 ; used to insert "Clint:" before a string
 (define (p str [str2 ""])
