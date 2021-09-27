@@ -1,7 +1,6 @@
 #lang racket/gui
 (require srfi/13)
-(require "clint-cli/utils.rkt")
-(require "clint-cli/responses.rkt")
+(require "clint-cli/utils.rkt" "clint-cli/responses.rkt")
 (provide (all-defined-out))
 
 (define name (if (file-exists? "name.txt") (file->string "name.txt") ""))

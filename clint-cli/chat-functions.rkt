@@ -1,7 +1,6 @@
 #lang racket
 (require srfi/13)
-(require "responses.rkt")
-(require "utils.rkt")
+(require "responses.rkt" "utils.rkt")
 (provide (all-defined-out))
 
 #| CHAT FUNCTION DEFINITIONS |#

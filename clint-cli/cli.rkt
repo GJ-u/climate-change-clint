@@ -33,5 +33,5 @@
     ))
 
 (define (start-clint)
-  (printf "You are now speaking to Climate Change Clint, to set your name, type 'name'")
+  (p "You are now speaking to Climate Change Clint, to set your name, type 'name'")
   (main-loop))

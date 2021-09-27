@@ -1,7 +1,5 @@
 #lang racket/gui
-(require "chat-functions-gui.rkt")
-(require "clint-cli/utils.rkt")
-(require "clint-cli/responses.rkt")
+(require "chat-functions-gui.rkt" "clint-cli/utils.rkt" "clint-cli/responses.rkt")
 (require srfi/13)
 (provide (all-defined-out))
 
@@ -73,7 +71,7 @@
   ;; display clint's beautiful face
   (define clint-portrait (new button%
                               [parent top-panel]
-                              [label clint-neutral]
+                              [label (car clint-list)]
                               [min-width 250]
                               [min-height 250]))
 
@@ -103,12 +101,7 @@
                        (set! await-name #f))]
               [else nil])
             ; change clint portraits at random
-            (case (random 5)
-              [(0) (send clint-portrait set-label clint-happy)]
-              [(1) (send clint-portrait set-label clint-neutral)]
-              [(2) (send clint-portrait set-label clint-goofy)]
-              [(3) (send clint-portrait set-label clint-sad)]
-              [(4) (send clint-portrait set-label clint-sob)])
+            (send clint-portrait set-label (choose clint-list))
             (send txt set-value "") ; clear text field
             ; clint's response
             (send style set-delta-foreground "Olive")
