@@ -13,14 +13,22 @@
        [parent w]
        [alignment '(center top)]))
 
+(define alignment-c
+  (new horizontal-pane%
+       [parent w]
+       [alignment '(center top)]))
 ;; the emacs-esque message that will display
 (define open-text
   (new message%
        [parent alignment-a]
-       [label "      This is Climate Change Clint v1.0
-Climate Change Clint is licensed under GPLv3 
-    and comes with ABSOLUTELY NO WARRANTY.
-"]))
+       [label "This is Climate Change Clint v1.0."]
+       [auto-resize #t]))
+
+(define disclaimer-text
+  (new message%
+       [parent alignment-c]
+       [label "              Climate Change Clint is licensed under GPLv3 or later and \ncomes with ABSOLUTELY NO WARRANTY to the extent permitted by law."]
+       [auto-resize #t]))
 
 ;; button deletes itself upon launch
 (define launch-button
@@ -33,6 +41,7 @@ Climate Change Clint is licensed under GPLv3
                    (begin
                      (send alignment-b delete-child launch-button)
                      (send alignment-a delete-child open-text)
+                     (send alignment-c delete-child disclaimer-text)
                      (make-clint)))]))
 
 (define (open-gui)(send w show #t))
