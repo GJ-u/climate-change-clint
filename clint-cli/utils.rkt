@@ -17,7 +17,7 @@
     [(and (string-contains str str-must)(string-contains-or str lst)) #t]
     [else #f]))
 
-; convert string to sentencecase
+; convert string to sentencecase. i am unsure whether this is being used actually.
 ; see https://docs.racket-lang.org/reference/regexp.html
 (define/contract (string-sentencecase str)
   (-> string? string?) ; make sure that str is a string
@@ -26,8 +26,7 @@
      (~a prefix (string-upcase first-letter) rest-of-string)])) ; capitalise the first lowercase letter, leaving the rest untouched
 
 ;; choose : lst -> int
+;; return random element of a list.
 (define (choose lst)
-  (if (list? lst)
-      (list-ref lst (random (length lst)))
-      (vector-ref lst (random (vector-length lst)))))
+      (list-ref lst (random (length lst))))
  

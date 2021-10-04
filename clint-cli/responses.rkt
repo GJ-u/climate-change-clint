@@ -2,6 +2,7 @@
 (require "tips.rkt")
 (provide (all-defined-out))
 
+;; help message when asked for a tip without addition arguments
 (define tip-info
   "For advice on climate change, please type \"tip\" followed by a word from the following list:\n-Home\n-Travel\n-Work\n-Nature\n-Communication\n-Education\n-Shopping\nFor example, \"tip travel\"")
 
@@ -18,7 +19,15 @@
     "I'm alright, just thinking about the fact that there is more carbon dioxide in our athmosphere now than at any point during human history."
     "I am feeling terrible. Average wildlife populations have dropped by 60% in the past 40 years."
     "I am doing alright, as alright as I can be knowing that humans have already caused 1.07C of global heating.")
-   `(("tip home") ,home)
+   ; avoiding ridiculously long list by using cons pairs.
+   (cons '("tip home") home)
+   (cons '("tip travel") travel)
+   (cons '("tip work") work)
+   (cons '("tip nature") nature)
+   (cons '("tip communication") communication)
+   (cons '("tip education") education)
+   (cons '("tip shopping") shopping)
+   ; backquoting to include the help message defined above. this is because the help message is too long.
    `(("tip" "advice")
      ,tip-info)
    '(("what is your name" "what do you do" "what is your purpose" "who are you" "what can you do")
@@ -29,7 +38,7 @@
      "Is that really so?" "That is so cool!" "Huh, interesting." "Woah, cool." "Oh really?" "That's strange.")
    '(("yes" "ye " "mhm" "yeah" "right")
      "Yay!" "Cool..." "That's right!" "Mhm..." "Is that a good or a bad thing?" "Great!")
-   '(("no" "incorrect" "wrong" "nuh" "nope"s)
+   '(("no" "incorrect" "wrong" "nuh" "nope")
      "Oh? Why not?" "Noooo :(" "Oh, right." "Do you really think that is the case?" "Ah, is that a good or a bad thing?")
    '(("what") "what?" "You might not like the answer..." "I don't know!" "How could you find out?")
    '(("who") "??" "I don't know who." "Someone, somewhere." "I don't know who.")
@@ -39,6 +48,7 @@
    '(("why") "Why do you ask?" "Why do you need to know?" "The answer may suprise you.")
    ))
 
+; list of generic responses that the q function will return upon not finding any of the above words in the input.
 (define generic-responses
   '("Mhm..." "What." "Oh, I see." "How are you doing?"))
 
@@ -74,6 +84,8 @@
   '("Since when did you" "Why do you"))
 
 #| CLINT AND USER |#
+;; defined seperately because of the special procedures associated.
+;; the special procedures being constructing a sentence at random, as defined in chat-functions.rkt
 
 (define modal-verbs
   '("can" "could" "must" "should" "will" "would" "may" "ought" "might"))

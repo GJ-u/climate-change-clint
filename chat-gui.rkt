@@ -8,6 +8,7 @@
 (define await-weather #f)
 (define await-name #f)
 
+;; provides clint's response, as it does in the cli version
 (define (respond input)
   (cond
     [(string-contains-or input (caar clint-pairs)) (exit)]
@@ -25,17 +26,20 @@
     [else (q input clint-pairs)]))
     
 ;; ask-name: nil -> str
+;; mutates variable await-name
 (define (ask-name)
   (set! await-name #t)
   "What is your name?")
 
 ;; ask-question: nil -> func
+;; mutates variable await-weather
 (define (ask-question)
   (set! await-weather #t)
   (greeting-and-question))
 
 
 #| GUI DEFINITIONS START HERE |#
+
 ;; main window
 (define w (new frame%
                [label "Climate Change Clint"]
@@ -53,6 +57,8 @@
   [auto-wrap #t]))
 (send editor lock #t) ; disable typing in the editor
 
+
+;; called in start-gui.rkt upon the press of the Launch Clint button
 (define (make-clint)
 
   ;; descriptive text
@@ -84,12 +90,14 @@
 
   ;; handle events in text field
   (define (event-handler text-field event)
+    ; check if user pressed enter key
     (if (equal? 'text-field-enter (send event get-event-type) )
         (begin
           (send editor lock #f)
           (send editor insert (string-append "\n" (send text-field get-value) "\n"))
           (let ((input (string-downcase (send text-field get-value))))
             ; check whether writing to file is needed
+            ; writing to file uses the same principle as in clint-cli/chat-functions.rkt
             (cond
               [await-weather
                (begin0 (with-output-to-file "weather.txt" #:exists 'replace

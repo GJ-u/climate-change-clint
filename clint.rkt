@@ -1,5 +1,5 @@
 #lang racket/gui
-
+;; self explanatory
 (require "start-gui.rkt")
 (require "clint-cli/cli.rkt")
 
