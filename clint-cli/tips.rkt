@@ -1,4 +1,5 @@
 #lang racket
+(provide (all-defined-out))
 (define travel
   [vector
  "Use public transport to get to work and leisure activities. "

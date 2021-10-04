@@ -27,5 +27,7 @@
 
 ;; choose : lst -> int
 (define (choose lst)
-  (list-ref lst (random (length lst))))
+  (if (list? lst)
+      (list-ref lst (random (length lst)))
+      (vector-ref lst (random (vector-length lst)))))
  
