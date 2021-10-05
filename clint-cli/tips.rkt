@@ -1,8 +1,7 @@
 #lang racket
 (provide (all-defined-out))
 
-;; i would hope this file is self explanatory.
-;; the tips are used in responses.rkt, as part of the clint-pairs that the function q checks for.
+;; used in clint-cli/responses.rkt
 
 (define travel
   (list

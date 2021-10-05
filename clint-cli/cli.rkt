@@ -3,7 +3,7 @@
 (require "responses.rkt" "chat-functions.rkt" "utils.rkt")
 (provide (all-defined-out))
 
-; main-loop: nil -> func
+;; main-loop: nil -> func
 (define (main-loop)
   (let ((input(string-downcase (prompt))))
     (if (string-contains-or input (caar clint-pairs))
@@ -12,8 +12,8 @@
           (respondc input)
           (main-loop)))))
 
-; respond: str -> func
-; cond block is ordered by priority
+;; respond: str -> func
+;; cond block is ordered by priority
 (define (respondc input)
   (cond
     ; setting name
@@ -31,10 +31,10 @@
     [(and (string-contains input "i")(string-contains-or input modal-verbs-i))
      (modal-i (string-contains-or input modal-verbs-i))]
     ; check through other options
-    [else (p (q input clint-pairs))]
+    [else (p (respond-else input clint-pairs))]
     ))
 
-; start-clint is called in clint.rkt when the --cli switch is used.
+;; start-clint is called in clint.rkt when the --cli switch is used.
 (define (start-clint)
   (printf "You are now speaking to Climate Change Clint, to set your name, type 'name'. For advice, type 'tip'.
 Climate Change Clint is licensed under GPLv3 or later, and comes with ABSOLUTELY NO WARRANTY to the extent permitted by law.")

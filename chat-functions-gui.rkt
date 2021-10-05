@@ -19,41 +19,41 @@
 
 #| CHAT FUNCTION DEFINITIONS |#
 
-; greet the user with a climate tip
+;; greet the user with a climate tip
 (define (greeting-response)
   (string-append (string-sentencecase (choose greeting))
                  (case (random 2) [(0) (string-append " " (string-titlecase name))]
                    [(1) ""]) ", "
                  (string-downcase (choose tips))))
 
-; greet the user with a question
+;; greet the user with a question
 (define (greeting-and-question)
   (string-append (string-sentencecase (choose greeting))
                  (string-append " "(string-titlecase name))
                  ", How is the weather today?"))
 
-; greet user and mention weather
+;; greet user and mention weather
 (define (weather-mention)
   (string-append (string-sentencecase (choose greeting))
                  ", last time we spoke, you said the weather was "
                  weather ". Is that still the case?"))
 
-; respond to a modal verb affirmatively
+;; respond to a modal verb affirmatively
 (define (modal-affirmative [mode (choose modal-verbs)])
   (string-append "Clint: " (choose affirmative-after-modal) " " mode))
 
-; respond to i-modals
+;; respond to i-modals
 (define (modal-i [mode (choose modal-verbs-i)])
   (string-append (choose modal-i-response) " " mode " that?"))
 
-; you may wonder why q is also defined here
-; the answer is that i do not want utils.rkt to begin with a require statement,
-; which it would need to, as q relies on generic-responses defined in responses.rkt
-(define (q input clint-pairs)
+;; you may wonder why respond-else is also defined here
+;; the answer is that i do not want utils.rkt to begin with a require statement,
+;; which it would need to, as respond-else relies on generic-responses defined in responses.rkt
+(define (respond-else input clint-pairs)
   (cond
     [(null? clint-pairs) (choose generic-responses)]
     [(string-contains-or input (caar clint-pairs)) (choose (cdar clint-pairs))]
-    [else (q input (cdr clint-pairs))]))
+    [else (respond-else input (cdr clint-pairs))]))
 
 
 

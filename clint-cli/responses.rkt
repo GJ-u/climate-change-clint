@@ -48,9 +48,10 @@
    '(("why") "Why do you ask?" "Why do you need to know?" "The answer may suprise you.")
    ))
 
-; list of generic responses that the q function will return upon not finding any of the above words in the input.
+; list of generic responses that the respond-else function will return upon not finding any of the above words in the input.
 (define generic-responses
-  '("Mhm..." "What." "Oh, I see." "How are you doing?"))
+  '("Mhm..." "What." "Oh, I see." "How are you doing?" "That is so interesting." "Huh, I hadn't thought of that before." "Maybe your life has something to do with this."
+    "Sure..."   "Have you considered going outside?"))
 
 #| MISC |#
 

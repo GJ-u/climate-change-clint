@@ -23,7 +23,7 @@
      (modal-affirmative (string-contains-or input modal-verbs))]
     [(and (string-contains input "i")(string-contains-or input modal-verbs-i))
      (modal-i (string-contains-or input modal-verbs-i))]
-    [else (q input clint-pairs)]))
+    [else (respond-else input clint-pairs)]))
     
 ;; ask-name: nil -> str
 ;; mutates variable await-name
@@ -90,14 +90,14 @@
 
   ;; handle events in text field
   (define (event-handler text-field event)
-    ; check if user pressed enter key
+    ;; check if user pressed enter key
     (if (equal? 'text-field-enter (send event get-event-type) )
         (begin
           (send editor lock #f)
           (send editor insert (string-append "\n" (send text-field get-value) "\n"))
           (let ((input (string-downcase (send text-field get-value))))
-            ; check whether writing to file is needed
-            ; writing to file uses the same principle as in clint-cli/chat-functions.rkt
+            ;; check whether writing to file is needed
+            ;; writing to file uses the same principle as in clint-cli/chat-functions.rkt
             (cond
               [await-weather
                (begin0 (with-output-to-file "weather.txt" #:exists 'replace
@@ -108,20 +108,20 @@
                          (lambda () (printf "~a" input)))
                        (set! await-name #f))]
               [else nil])
-            ; change clint portraits at random
+            ;; change clint portraits at random
             (send clint-portrait set-label (choose clint-list))
             (send txt set-value "") ; clear text field
-            ; clint's response
+            ;; clint's response
             (send style set-delta-foreground "Olive")
             (send editor change-style style)
             (send editor insert (string-append "Clint: " (respond input)))
-            ; reset colours and lock editor
+            ;; reset colours and lock editor
             (send style set-delta-foreground "black")
             (send editor change-style style)
             (send editor lock #t)))
         nil))
 
-  ; text input field
+  ;; text input field
   (define txt (new text-field%
                    [parent w]
                    [label ">>"]
