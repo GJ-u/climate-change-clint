@@ -1,12 +1,5 @@
 # climate-change-clint
 
-**Guide for giving Clint a new personality**
+Climate Change Clint is a chatbot written in Racket, designed to talk to you and give you tips about climate change.
 
-(revised version coming soon)
-
-
-**TO-DO**
-- new personalities for clint
-- ~~launch page~~ add hyperlinks to launch page
-- working racket repl inside clint?
-- add remembering the weather to clint-cli
+By GPL-3.0 License, I mean GPL-3.0 or later. Github will not let me display this.
