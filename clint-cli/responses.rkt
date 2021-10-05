@@ -12,7 +12,7 @@
 (define clint-pairs
   (list
    '(("farewell" "bye" "goodbye" "see you" "see you later" "ciao" "cya")
-     "see you! Have a climate concious day!" "Goodbye." "Farewell, remember to recycle.") 
+     "See you! Have a climate concious day!" "Goodbye." "Farewell, remember to recycle.") 
    '(("how are you" "what's up" "whats up" "hru" "what are you doing" "how are you")
      "I am fine thank you, and you?"
      ; source: https://www.wired.co.uk/article/climate-change-facts-2019
