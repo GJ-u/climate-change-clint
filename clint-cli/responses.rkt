@@ -95,5 +95,5 @@
   '("need" "think" "want" "have" "do"))
 
 (define greeting
-  '("hello" "hewwo" "hey" "hey there" "hi " "greetings traveller" "yo!" "hello there" ))
+  '("hello" "hewwo" "hey" "hey there" "hi " "greetings traveller" "yo!" "hello there" "greetings" "sup"))
    
