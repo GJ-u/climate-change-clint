@@ -28,8 +28,7 @@
    (cons '("tip education") education)
    (cons '("tip shopping") shopping)
    ; backquoting to include the help message defined above. this is because the help message is too long.
-   `(("tip" "advice")
-     ,tip-info)
+   `(("tip" "advice"),tip-info)
    '(("what is your name" "what do you do" "what is your purpose" "who are you" "what can you do")
      "I am Climate Change Clint, I provide you with tips on how to help the climate."
     "I'm Clint, a climate change chatbot!"
@@ -92,7 +91,7 @@
   '("can" "could" "must" "should" "will" "would" "may" "might"))
 
 (define modal-verbs-i
-  '("need" "think" "want" "have" "do"))
+  '("need" "think" "want" "have"))
 
 (define greeting
   '("hello" "hewwo" "hey" "hey there" "hi " "greetings traveller" "yo!" "hello there" "greetings" "sup"))
