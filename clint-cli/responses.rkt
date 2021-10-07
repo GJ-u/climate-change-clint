@@ -36,10 +36,10 @@
     "Clint is my name, I will chat with you and provide tips about climate change.")
    '(("so " "so that" "because" " so " "since")
      "Is that really so?" "That is so cool!" "Huh, interesting." "Woah, cool." "Oh really?" "That's strange.")
-   '(("yes" "ye " "mhm" "yeah" "right")
-     "Yay!" "Cool..." "That's right!" "Mhm..." "Is that a good or a bad thing?" "Great!")
-   '(("no" "incorrect" "wrong" "nuh" "nope")
-     "Oh? Why not?" "Noooo :(" "Oh, right." "Do you really think that is the case?" "Ah, is that a good or a bad thing?")
+   '(("yes" "ye " "mhm" "yeah" "right" "good" "great" "excellent")
+     "Yay!" "Cool..." "That's right!" "Mhm..." "Is that a good or a bad thing?" "Great!" "That's so nice.")
+   '(("no" "incorrect" "wrong" "nuh" "nope" "bad" "terrible" "awful")
+     "Oh? Why?" "Noooo :(" "Oh, right." "Do you really think that is the case?" "Ah, is that a good or a bad thing?")
    '(("what") "what?" "You might not like the answer..." "I don't know!" "How could you find out?")
    '(("who") "??" "I don't know who." "Someone, somewhere." "I don't know who.")
    '(("how") "Why do you need to know?" "You might not like the answer.")
@@ -89,7 +89,7 @@
 ;; the special procedures being constructing a sentence at random, as defined in chat-functions.rkt
 
 (define modal-verbs
-  '("can" "could" "must" "should" "will" "would" "may" "ought" "might"))
+  '("can" "could" "must" "should" "will" "would" "may" "might"))
 
 (define modal-verbs-i
   '("need" "think" "want" "have" "do"))
