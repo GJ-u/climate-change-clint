@@ -40,7 +40,7 @@
 
 ;; respond to a modal verb affirmatively
 (define (modal-affirmative [mode (choose modal-verbs)])
-  (string-append "Clint: " (choose affirmative-after-modal) " " mode))
+  (string-append (choose affirmative-after-modal) " " mode))
 
 ;; respond to i-modals
 (define (modal-i [mode (choose modal-verbs-i)])

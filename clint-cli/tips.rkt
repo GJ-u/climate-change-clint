@@ -24,8 +24,7 @@
  "Insulate your house, starting with the roof space." 
  "Wear warm jumpers and thick socks in winter and turn down your heater             
        thermostat in winter to 18 degrees or cooler." 
- "Cool yourself before you cool your home in summer, and turn up your air-             
-    conditioner thermostat to 24 degrees or warmer, but try to just use a fan." 
+ "Cool yourself before you cool your home in summer." 
  "Recycle everything you can."  
  "Follow a ‘climatarian’ diet - eat less lamb and beef (they produce most               
       methane). Compost your food waste." 
