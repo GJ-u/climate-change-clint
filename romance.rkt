@@ -1,19 +1,28 @@
 #lang racket/gui
 (require "chat-functions-gui.rkt")
 
+(define climate-pickups
+  '("Are you the environment? Because I care about you." "Baby, the connection I am feeling is stronger than the one between climate change and extreme weather."
+    "Reuse, seduce, recycle."))
+
 (define button-text
   '( ("Yes, I am interested in coal power \nplants." "I like recycling.")
      ("I love you Clint, do you want to help \nme install solar panels tomorrow?" "Haha! Climate change is not real!\nYou are delusional!")
      ("Hehe, aww." "No, you.")
      ("Oh????? Really?" "Mhm, I would like to do this again sometime.")
-     ))
+     ("Do you have any climate-change related \npickup lines?" "What do you think about me?")
+     ("You are so weird, I think we should end this." "Ok, I need to go now, see you next time.")
+     ("" "")))
 
 (define response-text
-  '( ("Clint: Yay! I am so excited. What are your interests?" "Clint: What?! Why are you here then, just to break my heart?")
+  `( ("Clint: Yay! I am so excited. What are your interests?" "Clint: What?! Why are you here then, just to break my heart?")
      ("Clint: What! Go away." "Clint: Wow... I think I might be in love.")
      ("Clint: Absolutely. You are so cool." "Clint: I think you need to reevaluate your life.")
      ("Clint: Well, this has been a good date!" "Clint: I am not sure if I am that interested in you... We seem to be different people.")
-     ("Clint: Yeah, sorry about that." "Clint: That would be OK.")))
+     ("Clint: Yeah, sorry about that." "Clint: That would be OK.")
+     ,(cons (string-append "Clint: " (list-ref climate-pickups (random (length climate-pickups)) )) "Clint: Well.... hmmmmmm...")
+     ("Clint: So do I!! You can click the X button to leave." "Clint: Ye, until next time.")
+     ("Clint: What! Why are you still here." "...")))
   
 (define w (new frame%
                [label "Climate Change Clint"]
@@ -66,7 +75,7 @@
 (define (button-callback B E)
   (begin
     (send editor insert (format "~%~a" (send B get-label)))
-    (if (or (null? button-text) (null? response-text))
+    (if (null? button-text)
         (exit)
         (begin (send button-one set-label (caar button-text))
                ; set text colour to green

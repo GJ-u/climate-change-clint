@@ -23,8 +23,7 @@
 (define (greeting-response)
   (string-append (string-sentencecase (choose greeting))
                  (case (random 2) [(0) (string-append " " (string-titlecase name))]
-                   [(1) ""]) ", "
-                 (string-downcase (choose tips))))
+                   [(1) ""]) ", " (string-downcase (choose tips))))
 
 ;; greet the user with a question
 (define (greeting-and-question)
